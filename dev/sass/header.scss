@@ -1,8 +1,27 @@
 header{
-	height: 7vh;
 	padding: 15px 0;
-	background: #222;
-	a {
-		color: #fff;
+	background: $primary-color;
+	.container {
+		display: flex;
 	}
+	a {
+		font-size: 23px;
+		color: #fff;
+		text-decoration: none;
+
+		&:hover {
+			color: $secondary-color ;
+		}
+
+		&.logo {
+			max-width: 200px;
+		}
+	}
+}
+
+.navigation {
+	margin-left: 65px;
+    align-items: center;
+    display: flex;
+    gap: 25px;
 }
