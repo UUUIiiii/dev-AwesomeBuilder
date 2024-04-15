@@ -173,7 +173,25 @@ function installFloor () {
 
             let flatNumber = flatArray.filter(item => item.flatNumber === Number(thisFlat));
             renderInformation(flatNumber);
+
         })
+        flats.forEach(flat => {
+            if(flat.classList.contains('booking')){
+                flat.querySelector('.status-text').innerHTML = 'Бронь';
+            }
+            else if(flat.classList.contains('already-sold')){
+                flat.querySelector('.status-text').innerHTML = 'Продана';
+            }
+            else if(flat.classList.contains('action')){
+                flat.querySelector('.status-text').innerHTML = 'Акція';
+            }
+            else {
+                flat.querySelector('.status-text').innerHTML = 'Вільна'
+            }
+        })
+        
     })
  }
 document.querySelector('.floor-item-page') ? installFloor() : null;
+
+
