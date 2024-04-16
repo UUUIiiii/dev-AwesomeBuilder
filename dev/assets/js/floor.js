@@ -118,6 +118,10 @@ function installFloor () {
 
     const renderInformation = (array) => {
         const flatInformation = array.map(item => {
+
+            localStorage.setItem("Квартира", JSON.stringify(item))
+
+
             return(`<div class="floor-options">
             <div class="floor-option-item">
                 <div>Номер будинку:</div>
@@ -151,8 +155,14 @@ function installFloor () {
                 <div>Статус квартири:</div>
                 <div>${item.status}</div>
             </div>
+            <div class="floor-option-item">
+                <a class="flat-url" href="../flat-item.html">
+                    Переглянути квартиру
+                </a>
+            </div>
         </div>`)
-        })
+        
+    })
         flatInfo.innerHTML = flatInformation;
     }
     renderInformation(initialValue);
@@ -174,8 +184,12 @@ function installFloor () {
             let flatNumber = flatArray.filter(item => item.flatNumber === Number(thisFlat));
             renderInformation(flatNumber);
 
+
+            
+            
+
         })
-        flats.forEach(flat => {
+
             if(flat.classList.contains('booking')){
                 flat.querySelector('.status-text').innerHTML = 'Бронь';
             }
@@ -189,9 +203,58 @@ function installFloor () {
                 flat.querySelector('.status-text').innerHTML = 'Вільна'
             }
         })
-        
-    })
  }
 document.querySelector('.floor-item-page') ? installFloor() : null;
 
 
+
+
+if(document.querySelector('.flat-item-page')){
+    const flat = localStorage.getItem('Квартира');
+    const flatInfo = document.querySelector('.floor-options')
+
+    console.log(flat);
+    const renderInformation = (array) => {
+        const flatInfo = JSON.parse(flat)
+
+
+
+            return(`<div class="floor-options">
+            <div class="floor-option-item">
+                <div>Номер будинку:</div>
+                <div>${flatInfo.house}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Поверх:</div>
+                <div>${flatInfo.floor}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Номер квартири:</div>
+                <div>${flatInfo.flatNumber}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Кіл-ть кімнат:</div>
+                <div>${flatInfo.rooms}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Площа квартири:</div>
+                <div>${flatInfo.square}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Ціна за м²:</div>
+                <div>${flatInfo.price}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Ціна за квартиру:</div>
+                <div>${flatInfo.priceTotal}</div>
+            </div>
+            <div class="floor-option-item">
+                <div>Статус квартири:</div>
+                <div>${flatInfo.status}</div>
+            </div>
+        </div>`)
+        
+   
+    }
+        flatInfo.innerHTML = renderInformation(flat);
+    }
