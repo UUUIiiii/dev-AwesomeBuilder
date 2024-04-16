@@ -9,8 +9,6 @@ const cellActionFlats = document.getElementById('actionFlats');
 const showInformation = (cell, dataAttr) => { planItem.forEach(building => {
     building.addEventListener("mouseover", () => {
         cell.innerText =  building.getAttribute(dataAttr);
-       
-        ;
     })
 
     const buildFreeFlats = building.getAttribute('data-free-flats');

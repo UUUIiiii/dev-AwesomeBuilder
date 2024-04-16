@@ -213,7 +213,6 @@ if(document.querySelector('.flat-item-page')){
     const flat = localStorage.getItem('Квартира');
     const flatInfo = document.querySelector('.floor-options')
 
-    console.log(flat);
     const renderInformation = (array) => {
         const flatInfo = JSON.parse(flat)
 
